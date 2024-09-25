@@ -1,12 +1,15 @@
 import { Link } from "react-router-dom"
 import { useState } from 'react'
 import axios from 'axios'
+import { useNavigate } from "react-router-dom"
 
 function Register() {
 
   const [username, setUsername] = useState('')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+
+  const navigate = useNavigate()
 
   const handleSubmit = (event) => {
     event.preventDefault()
@@ -16,6 +19,7 @@ function Register() {
       password: password
     }).then((response) => {
       console.log(response.data)
+      navigate('/login')
     }).catch((error) => {
       console.log(error)
     })

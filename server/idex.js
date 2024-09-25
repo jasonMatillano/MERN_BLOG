@@ -22,6 +22,30 @@ mongoose.connect('mongodb://127.0.0.1:27017/blog')
 .then(() => {console.log('Connected to MongoDB')})
 .catch(err => { console.log(err)})
 
+const verifyUser = (req, res, next) => {
+    const token = req.cookies.token;  // Ensure you have cookie-parser middleware enabled
+    if (!token) {
+        return res.status(401).send({ auth: false, message: 'No token provided' });
+    }
+
+    jwt.verify(token, 'secretkey', (err, decoded) => {
+        if (err) {
+            return res.status(401).send({ auth: false, message: 'Failed to authenticate' });
+        }
+
+        // Store user info from token in the request object
+        req.email = decoded.email;
+        req.username = decoded.username;
+        next();
+    });
+};
+
+
+
+app.get('/', verifyUser, (req, res) => {
+    return res.send({email: req.email, username: req.username})
+})
+
 app.post('/register', async (req, res) => {
     try {
         // Check if user already exists
@@ -63,7 +87,10 @@ app.post('/login', async (req, res) => {
                 return res.status(401).send({ message: 'Invalid password' });
             } else {
                 // Generate JWT token
-                const token = jwt.sign({ _id: user._id }, 'secretkey');
+                const token = jwt.sign({ email: user.email, username: user.username }, 'secretkey', { expiresIn: '1d' });
+
+                // Set JWT token in cookie
+                res.cookie('token', token);
                 return res.send({ message: 'Login successful', token: token });
             }
         } 
