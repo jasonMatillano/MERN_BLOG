@@ -1,4 +1,4 @@
-
+import { Link } from "react-router-dom"
 
 function Register() {
   return (
@@ -20,7 +20,7 @@ function Register() {
         <button>Sign Up</button>
       </form>
       <br />
-      <p>Already have an account? <a href="/login">Login</a></p>
+      <p>Already have an account? <a href="/login"><Link to='/login'>Login</Link></a></p>
     </div>
   )
 }
