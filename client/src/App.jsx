@@ -1,6 +1,7 @@
 import Navbar from "./Navbar"
 import Login from "./login"
 import Home from "./Home"
+import CreatePost from "./CreatePost"
 import Register from "./Register"
 import {BrowserRouter, Routes, Route} from "react-router-dom"
 import { createContext, useEffect , useState } from "react"
@@ -31,6 +32,7 @@ function App() {
         <Route path="/" element={<Home />}/>
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/create" element={<CreatePost />} />
       </Routes>
     </BrowserRouter>
     </userContext.Provider>

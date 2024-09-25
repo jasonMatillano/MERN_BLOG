@@ -7,6 +7,7 @@ const cookieParser = require('cookie-parser')
 const multer = require('multer')
 const path = require('path')
 const UserModel = require('./models/UserModel')
+const PostModel = require('./models/PostModel')
 
 
 const app = express()
@@ -39,8 +40,6 @@ const verifyUser = (req, res, next) => {
         next();
     });
 };
-
-
 
 app.get('/', verifyUser, (req, res) => {
     return res.send({email: req.email, username: req.username})
@@ -99,6 +98,29 @@ app.post('/login', async (req, res) => {
         return res.status(500).send({ message: err.message });
     }
 });
+
+const storage = multer.diskStorage({
+    destination: (req, file, cb) => {
+        cb(null, 'public/images')
+    },
+    filename: (req, file, cb) => {
+        cb(null, image.fieldname + '_' + Date.now() + path.extname(file.originalname)) 
+    }
+})
+
+const upload = multer({ 
+    storage: storage 
+})
+
+app.post('/create', verifyUser, upload.single('image'), (req, res) => { 
+    PostModel.create({
+        title: req.body.title,
+        body: req.body.body,
+        image: req.file.path
+    })
+    return res.send({ message: 'Post created successfully'})
+    
+})
 
 app.get('/logout', (req, res) => {
     res.clearCookie('token');

@@ -24,9 +24,9 @@ function Navbar() {
     <div className='navbar-header'>
         <div><h3>Blog App</h3></div>
         <div>
-            <a className = 'link' href='/'>Home</a>
-            <a className = 'link' href='/create'>Create</a>
-            <a className = 'link' href='/contact'>Contact</a>
+            <a className='link' href='/'>Home</a>
+            <Link to='/create' className='link' href='/create'>Create</Link>
+            <a className='link' href='/contact'>Contact</a>
         </div>
         {
           user.username ? 
