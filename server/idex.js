@@ -110,14 +110,15 @@ const fileStorage = multer.diskStorage({
 
 const upload = multer( {storage: fileStorage});
 
-app.post( '/single', upload.single('image'), (req, res) => {
-    console.log(req.file);
-    res.send("File uploaded successfully");
+app.post( '/create', verifyUser, upload.single('image'), (req, res) => {
+    PostModel.create({
+        title: req.body.title,
+        description: req.body.description,
+        image: req.file.path
+    })
+    return res.send({ message: 'Post created successfully' });
+  
 });
- 
-app.post('/create', (req, res) => {
-    console.log(req.body);
-})
 
 app.get('/logout', (req, res) => {
     res.clearCookie('token');

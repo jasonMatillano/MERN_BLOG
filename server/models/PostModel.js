@@ -9,7 +9,7 @@ const PostSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    file: {
+    image: {
         type: String,
         required: true
     },

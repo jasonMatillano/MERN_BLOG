@@ -15,7 +15,7 @@ function CreatePost() {
         formData.append('description', description)
         formData.append('image', image)
 
-        axios.post('http://localhost:3001/single', formData)
+        axios.post('http://localhost:3001/create', formData)
         .then((response) => {
             console.log(response.data)
         }).catch((error) => {
