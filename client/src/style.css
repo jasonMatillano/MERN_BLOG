@@ -1,0 +1,114 @@
+/* style.css */
+.navbar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #333;
+    color: #fff;
+    padding: 10px 20px;
+}
+
+.navbar-header h3 {
+    margin: 0;
+    font-size: 24px;
+}
+
+.navbar-header .link {
+    color: #fff;
+    text-decoration: none;
+    margin-right: 20px;
+    font-size: 18px;
+}
+
+.navbar-header .link:hover {
+    text-decoration: underline;
+}
+
+.navbar-header h5 {
+    margin: 0;
+    font-size: 16px;
+}
+
+/* style.css */
+.signup_form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #f9f9f9;
+    padding: 30px;
+    border-radius: 8px;
+    width: 100%;
+    max-width: 400px;
+    margin: 0 auto;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.signup_form h2 {
+    font-size: 26px;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.signup_form form {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.signup_form form div {
+    margin-bottom: 20px;
+}
+
+.signup_form label {
+    font-size: 14px;
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: #555;
+}
+
+.signup_form input {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.signup_form input:focus {
+    border-color: #007BFF;
+    outline: none;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+.signup_form button {
+    padding: 12px;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.signup_form button:hover {
+    background-color: #0056b3;
+}
+
+.signup_form p {
+    margin-top: 15px;
+    font-size: 14px;
+    color: #555;
+}
+
+.signup_form p a {
+    color: #007BFF;
+    text-decoration: none;
+}
+
+.signup_form p a:hover {
+    text-decoration: underline;
+}
+
+
+
+
