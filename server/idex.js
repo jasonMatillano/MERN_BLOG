@@ -50,6 +50,28 @@ app.post('/register', async (req, res) => {
     }
 });
 
+app.post('/login', async (req, res) => {
+    try {
+        // Check if user exists
+        const user = await UserModel.findOne({ email: req.body.email });
+        if (!user) {
+            return res.status(404).send({ message: 'User not found' });
+        } else {
+            // Check if password is correct
+            const validPassword = bcrypt.compareSync(req.body.password, user.password);
+            if (!validPassword) {
+                return res.status(401).send({ message: 'Invalid password' });
+            } else {
+                // Generate JWT token
+                const token = jwt.sign({ _id: user._id }, 'secretkey');
+                return res.send({ message: 'Login successful', token: token });
+            }
+        } 
+    } catch (err) {
+        // Handle errors 
+        return res.status(500).send({ message: err.message });
+    }
+});
 
 app.listen(3001, () => {
     console.log('Server is running on http://localhost:3001')
