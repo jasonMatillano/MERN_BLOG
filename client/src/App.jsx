@@ -3,23 +3,28 @@ import Login from "./login"
 import Home from "./Home"
 import Register from "./Register"
 import {BrowserRouter, Routes, Route} from "react-router-dom"
-import { createContext, useEffect } from "react"
+import { createContext, useEffect , useState } from "react"
 import axios from 'axios'
 
-export const UserContext = createContext()
+export const userContext = createContext()
 
 function App() {
+
+  const [user, setUser] = useState({})
 
   axios.defaults.withCredentials = true
   useEffect(() => {
     axios.get('http://localhost:3001/')
-    .then((response) => {
-      console.log(response)
+    .then((user) => {
+      setUser(user.data)
+    })
+    .catch((error) => {
+      console.log(error)
     })
   }, [])
   
   return (
-    // <UserContext.Provider value="">
+    <userContext.Provider value={user}>
     <BrowserRouter>
       <Navbar />
       <Routes>
@@ -28,6 +33,7 @@ function App() {
         <Route path="/login" element={<Login />} />
       </Routes>
     </BrowserRouter>
+    </userContext.Provider>
   )
 }
 
