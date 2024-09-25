@@ -1,12 +1,12 @@
 import { Link } from "react-router-dom"
 import { useState } from 'react'
 import axios from 'axios'
-import { useNavigate } from "react-router-dom"
+// import { useNavigate } from "react-router-dom"
 
 function Login() {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
-    const navigate = useNavigate()
+    // const navigate = useNavigate()
 
     const handleSubmit = (event) => {
       event.preventDefault()
@@ -15,7 +15,7 @@ function Login() {
         password: password
       }).then((response) => {
         console.log(response.data)
-        navigate('/')
+        window.location.href = '/'
       }).catch((error) => {
         console.log(error)
       })
