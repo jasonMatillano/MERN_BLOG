@@ -4,16 +4,16 @@ import axios from 'axios';
 function CreatePost() {
 
     const [title, setTitle] = useState('')
-    const [body, setBody] = useState('')
-    const  [image, setImage] = useState('')
+    const [description, setDescription] = useState('')
+    const  [file, setFile] = useState('')
     
 
     const handleSubmit = (event) => {
         event.preventDefault()
         const formData = new FormData()
         formData.append('title', title)
-        formData.append('body', body)
-        formData.append('image', image)
+        formData.append('description', description)
+        formData.append('file', file)
 
         axios.post('http://localhost:3001/create', formData)
         .then((response) => {
@@ -31,9 +31,9 @@ function CreatePost() {
                 onChange={(event) => setTitle(event.target.value)}/>
                 <label htmlFor="body">Body</label>
                 <textarea name="body" id="body" cols="30" rows="10" 
-                onChange={(event) => setBody(event.target.value)}></textarea>
+                onChange={(event) => setDescription(event.target.value)}></textarea>
                 <input type="file" name="image" id="image"
-                onChange={(event) => setImage(event.target.value)}/>
+                onChange={(event) => setFile(event.target.value)}/>
                 <button type="submit" >Submit</button>
             </form>
         </div>

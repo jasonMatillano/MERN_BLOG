@@ -99,29 +99,6 @@ app.post('/login', async (req, res) => {
     }
 });
 
-const storage = multer.diskStorage({
-    destination: (req, file, cb) => {
-        cb(null, 'public/images')
-    },
-    filename: (req, file, cb) => {
-        cb(null, image.fieldname + '_' + Date.now() + path.extname(file.originalname)) 
-    }
-})
-
-const upload = multer({ 
-    storage: storage 
-})
-
-app.post('/create', verifyUser, upload.single('image'), (req, res) => { 
-    PostModel.create({
-        title: req.body.title,
-        body: req.body.body,
-        image: req.file.path
-    })
-    return res.send({ message: 'Post created successfully'})
-    
-})
-
 app.get('/logout', (req, res) => {
     res.clearCookie('token');
     return res.json({ message: 'Logout successful' });
