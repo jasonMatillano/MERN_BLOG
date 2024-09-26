@@ -1,8 +1,36 @@
-
+import { useEffect, useState } from "react"
+import axios from 'axios'
 
 function Home() {
+
+  const [ posts, setPosts ] = useState([])
+
+  useEffect(() => {
+    axios.get('http://localhost:3001/getposts')
+    .then((response) => {
+      // console.log(response.data)
+      setPosts(response.data)
+    })
+    .catch((error) => {
+      console.log(error)
+    })
+  }, [])
   return (
-    <div>Home</div>
+    <div>
+      <div>
+        {
+          posts.map((post) => {
+            return (
+              <div key={post._id}>
+                <h3>{post.title}</h3>
+                <p>{post.description}</p>
+                <img src={post.image} alt={post.title} />
+              </div>
+            )
+          })
+        }
+      </div>
+    </div>
   )
 }
 

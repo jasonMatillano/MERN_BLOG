@@ -116,9 +116,24 @@ app.post( '/create', verifyUser, upload.single('image'), (req, res) => {
         description: req.body.description,
         image: req.file.path
     })
-    return res.send({ message: 'Post created successfully' });
+    .then((response) => {
+        res.send(response)
+    })
+    .catch((error) => {
+        res.send(error)
+    })
   
 });
+
+app.get('/getposts', (req, res) => {
+    PostModel.find()
+    .then((response) => {
+        res.send(response)
+    })
+    .catch((error) => {
+        res.send(error)
+    })
+})
 
 app.get('/logout', (req, res) => {
     res.clearCookie('token');

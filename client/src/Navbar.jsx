@@ -24,8 +24,14 @@ function Navbar() {
     <div className='navbar-header'>
         <div><h3>Blog App</h3></div>
         <div>
-            <a className='link' href='/'>Home</a>
-            <Link to='/create' className='link' href='/create'>Create</Link>
+            <Link to='/' className='link'>Home</Link>
+            {
+              user.username ? 
+              <Link to='/create' className='link'>Create</Link> 
+              : 
+              <></>
+            }
+            <Link to='/create' className='link'>Create</Link>
             <a className='link' href='/contact'>Contact</a>
         </div>
         {
