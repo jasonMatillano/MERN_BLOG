@@ -1,12 +1,15 @@
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import axios from 'axios';
+import { userContext } from './App';
+import { useNavigate } from 'react-router-dom';
 
 function CreatePost() {
+    const user = useContext(userContext)
 
     const [title, setTitle] = useState('')
     const [description, setDescription] = useState('')
     const [image, setImage] = useState('')
-    
+    const navigate = useNavigate()
 
     const handleSubmit = (event) => {
         event.preventDefault()
@@ -14,10 +17,12 @@ function CreatePost() {
         formData.append('title', title)
         formData.append('description', description)
         formData.append('image', image)
+        formData.append('email', user.email)
 
         axios.post('http://localhost:3001/create', formData)
         .then((response) => {
             console.log(response.data)
+            navigate('/')
         }).catch((error) => {
             console.log(error)
         })

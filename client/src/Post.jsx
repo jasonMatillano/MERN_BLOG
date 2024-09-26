@@ -42,9 +42,9 @@ function Post() {
 
         <div className="button-container">
             {
-              user.username ? 
+              user.email === post.email ? 
               <div>
-                <button><Link to={`/editpost/${post._id}`} className="update-btn">Edit</Link></button>
+                <Link to={`/editpost/${post._id}`} className="update-btn">Edit</Link>
                 <button className="delete-btn" onClick={handleDelete}>Delete</button>
               </div>
               : 

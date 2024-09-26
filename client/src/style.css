@@ -291,5 +291,30 @@ margin-top: 15px;
 }
 }
 
+/* Post.css */
 
+.button-container {
+    margin-top: 20px;
+}
 
+.update-btn,
+.delete-btn {
+    padding: 10px 20px;
+    margin-right: 10px;
+    cursor: pointer;
+    background-color: #007bff; /* Blue background color */
+    color: #fff; /* White text color */
+    border: none;
+    border-radius: 5px;
+    text-decoration: none;
+}
+
+.update-btn:hover,
+.delete-btn:hover {
+    background-color: #0051b3; /* Darker blue on hover */
+}
+
+.link {
+    text-decoration: none;
+    color: #fff; /* White text color */
+}

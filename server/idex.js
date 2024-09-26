@@ -8,7 +8,7 @@ const multer = require('multer')
 const path = require('path')
 const UserModel = require('./models/UserModel')
 const PostModel = require('./models/PostModel')
-
+const fs = require('fs')
 
 const app = express()
 app.use(express.json())
@@ -105,7 +105,7 @@ const fileStorage = multer.diskStorage({
         cb(null, "./public/images");
     },
     filename: (req, file, cb) => {
-        cb(null, Date.now() + "--" + file.originalname);
+        cb(null, Date.now() + "_" + file.originalname);
     }
 });
 
@@ -115,6 +115,7 @@ app.post( '/create', verifyUser, upload.single('image'), (req, res) => {
     PostModel.create({
         title: req.body.title,
         description: req.body.description,
+        email: req.body.email,
         image: req.file.filename
     })
     .then((response) => {
@@ -162,6 +163,7 @@ app.put('/editpost/:id', verifyUser, (req, res) => {
 app.delete('/deletepost/:id', verifyUser, (req, res) => {
     PostModel.findByIdAndDelete(req.params.id)
     .then((response) => {
+        fs.unlinkSync(`./public/images/${response.image}`)
         res.send(response)
     })
     .catch((error) => {
