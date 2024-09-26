@@ -136,7 +136,7 @@ app.get('/getposts', (req, res) => {
     })
 })
 
-app.get('/getpostby/:id', (req, res) => {
+app.get('/getpostbyid/:id', (req, res) => {
     PostModel.findById(req.params.id)
     .then((response) => {
         res.send(response)
@@ -145,6 +145,19 @@ app.get('/getpostby/:id', (req, res) => {
         res.send(error)
     })
 })
+
+
+app.put('/editpost/:id', verifyUser, (req, res) => {
+    PostModel.findByIdAndUpdate(req.params.id, req.body)
+    .then((response) => {
+        // console.log(response)
+        res.send(response)
+    })
+    .catch((error) => {
+        res.send(error)
+    })
+})
+
 
 app.get('/logout', (req, res) => {
     res.clearCookie('token');
