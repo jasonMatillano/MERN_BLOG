@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react"
+import { Link } from "react-router-dom"
 import axios from 'axios'
 
 function Home() {
@@ -21,11 +22,14 @@ function Home() {
         {
           posts.map((post) => {
             return (
-              <div key={post._id}>
-                <h3>{post.title}</h3>
-                <p>{post.description}</p>
-                <img src={`http://localhost:3001/images/${post.image}`} alt={post.title} />
-              </div>
+              <Link to={`/post/${post._id}`} key={post._id} className="link">
+                <div key={post._id}>
+                  <h3>{post.title}</h3>
+                  <p>{post.description}</p>
+                  <img src={`http://localhost:3001/images/${post.image}`} alt={post.title} />
+                </div>
+              </Link>
+
             )
           })
         }

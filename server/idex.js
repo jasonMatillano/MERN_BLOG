@@ -136,6 +136,16 @@ app.get('/getposts', (req, res) => {
     })
 })
 
+app.get('/getpostby/:id', (req, res) => {
+    PostModel.findById(req.params.id)
+    .then((response) => {
+        res.send(response)
+    })
+    .catch((error) => {
+        res.send(error)
+    })
+})
+
 app.get('/logout', (req, res) => {
     res.clearCookie('token');
     return res.json({ message: 'Logout successful' });
