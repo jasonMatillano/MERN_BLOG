@@ -17,14 +17,14 @@ function Home() {
   }, [])
   return (
     <div>
-      <div>
+      <div className="blogs">
         {
           posts.map((post) => {
             return (
               <div key={post._id}>
                 <h3>{post.title}</h3>
                 <p>{post.description}</p>
-                <img src={post.image} alt={post.title} />
+                <img src={`http://localhost:3001/images/${post.image}`} alt={post.title} />
               </div>
             )
           })

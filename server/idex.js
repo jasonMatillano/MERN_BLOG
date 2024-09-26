@@ -18,6 +18,7 @@ app.use(cors({
     credentials: true
 }))
 app.use(cookieParser())
+app.use(express.static('public'))
 
 mongoose.connect('mongodb://127.0.0.1:27017/blog')
 .then(() => {console.log('Connected to MongoDB')})
@@ -114,7 +115,7 @@ app.post( '/create', verifyUser, upload.single('image'), (req, res) => {
     PostModel.create({
         title: req.body.title,
         description: req.body.description,
-        image: req.file.path
+        image: req.file.filename
     })
     .then((response) => {
         res.send(response)
@@ -122,7 +123,7 @@ app.post( '/create', verifyUser, upload.single('image'), (req, res) => {
     .catch((error) => {
         res.send(error)
     })
-  
+    // console.log(req.file)
 });
 
 app.get('/getposts', (req, res) => {
