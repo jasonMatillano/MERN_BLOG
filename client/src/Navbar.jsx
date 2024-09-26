@@ -31,7 +31,6 @@ function Navbar() {
               : 
               <></>
             }
-            <Link to='/create' className='link'>Create</Link>
             <a className='link' href='/contact'>Contact</a>
         </div>
         {
