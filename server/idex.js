@@ -159,6 +159,17 @@ app.put('/editpost/:id', verifyUser, (req, res) => {
 })
 
 
+app.delete('/deletepost/:id', verifyUser, (req, res) => {
+    PostModel.findByIdAndDelete(req.params.id)
+    .then((response) => {
+        res.send(response)
+    })
+    .catch((error) => {
+        res.send(error)
+    })
+})
+
+
 app.get('/logout', (req, res) => {
     res.clearCookie('token');
     return res.json({ message: 'Logout successful' });

@@ -12,21 +12,20 @@ function EditPost() {
     const handleUpdate = (event) => {
         event.preventDefault()
 
-        axios.put('http://localhost:3001/editpost/' + id, {
+        axios.put(`http://localhost:3001/editpost/${id}`, {
             title: title,
             description: description
         })
         .then((response) => {
             console.log(response.data)
             navigate('/')
-            
         }).catch((error) => {
             console.log(error)
         })
     }
 
     useEffect(() => {
-        axios.get('http://localhost:3001/getpostbyid/' + id)
+        axios.get(`http://localhost:3001/getpostbyid/${id}`)
         .then((response) => {
             console.log(response.data)
             setTitle(response.data.title)
