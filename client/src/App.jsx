@@ -1,5 +1,5 @@
 import Navbar from "./Navbar"
-import Login from "./login"
+import Login from "./Login"
 import Home from "./Home"
 import CreatePost from "./CreatePost"
 import Register from "./Register"
