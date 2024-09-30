@@ -13,10 +13,10 @@ const fs = require('fs')
 const app = express()
 app.use(express.json())
 app.use(cors({
-    origin: 'http://localhost:5173',
+    origin: ['http://localhost:5173', 'http://172.21.80.1:5173','http://192.168.8.1:5173'],
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
     credentials: true
-}))
+}));
 app.use(cookieParser())
 app.use(express.static('public'))
 
